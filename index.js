@@ -37,7 +37,7 @@ server.get("/projects", (req, res) => {
 
 server.get("/projects/:id", checkProjectExists, (req, res) => {
   /**
-   * Function: index
+   * Function: show
    * Description: lists one project using the input ID.
    * Route params:
    *  -> id: string
