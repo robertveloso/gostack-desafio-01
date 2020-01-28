@@ -18,10 +18,9 @@ server.use(logRequests)
 
 function checkProjectExists(req, res, next) {
   const { id } = req.params
+  const project = projects.find(p => p.id == id);
 
-  let project = projects.findIndex(p => p.id === id)
-
-  if (project === -1) {
+  if (!project) {
     return res.status(400).json({ error: "ID not found." })
   }
 
@@ -41,7 +40,7 @@ server.get("/projects/:id", checkProjectExists, (req, res) => {
    * Function: index
    * Description: lists one project using the input ID.
    * Route params:
-   *  -> id: integer
+   *  -> id: string
    */
   const { id } = req.params
   const idx = projects.findIndex(p => p.id == id)
@@ -53,7 +52,7 @@ server.post("/projects", (req, res) => {
    * Function: update
    * Description: adds a new project with a blank task.
    * Request body:
-   *  -> id: integer
+   *  -> id: string
    *  -> title: string
    */
   const { id, title } = req.body
@@ -75,9 +74,13 @@ server.post("/projects/:id/tasks", checkProjectExists, (req, res) => {
   const { id } = req.params
   const { title } = req.body
   const idx = projects.findIndex(p => p.id == id)
-  const project = projects[idx].tasks.push(title)
+  // let project = undefined
+  //if (projects[idx])
+    const project = projects[idx].tasks.push(title)
+  //else
+    //return res.json("ID not found")
 
-  return res.json(projects[project])
+  return res.json(projects[idx])
 })
 
 server.put("/projects/:id", checkProjectExists, (req, res) => {
@@ -91,12 +94,11 @@ server.put("/projects/:id", checkProjectExists, (req, res) => {
    */
   const { id } = req.params
   const { title } = req.body
+  const project = projects.find(p => p.id == id)
 
-  const idx = projects.findIndex(p => p.id == id)
+  project.title = title
 
-  projects[idx].title = title
-
-  return res.json(projects[idx])
+  return res.json(project)
 })
 
 server.delete("/projects/:id", checkProjectExists, (req, res) => {
@@ -107,7 +109,6 @@ server.delete("/projects/:id", checkProjectExists, (req, res) => {
    *  -> id: string
    */
   const { id } = req.params
-
   const idx = projects.findIndex(p => p.id == id)
 
   projects.splice(idx, 1)
