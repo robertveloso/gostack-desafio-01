@@ -1,9 +1,12 @@
-# 🖥 GoStack Desafio 01
+# 🖥 GoStack Challenge 01
 
 <h1 align="center">
     <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
 </h1>
-The first challenge on GoStack 10.
+<h3 align="center">
+  Challenge 1: Basic concepts of NodeJS
+</h3>
+<p align="center">“Sua única limitação é você mesmo”!</p>
 <p align="center">
     <a href="https://nodejs.org" target="_blank"><img alt="nodejs version" src="https://img.shields.io/badge/nodejs-13.6.0-blue"></a>
     <img alt="License" src="https://img.shields.io/badge/license-MIT-%2304D361">
